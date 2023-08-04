@@ -1,60 +1,19 @@
-// import React, { useEffect, useRef } from 'react';
-// import  ReactDOM  from 'react-dom';
-// import styles from './post.css';
-// import { CommentForm } from './CommentForm';
-
-// interface IPost {
-//   onClose?: () => void;
-// }
-
-// export function Post(props: IPost) {
-
-//   const ref = useRef<HTMLDivElement>(null);
-
-//   useEffect(() => {
-//     function handleClick(event:MouseEvent) {
-//       if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-//         props.onClose?.();
-//       }
-//     }
-//     document.addEventListener('click', handleClick)
-
-//     return () => {
-//       document.removeEventListener('click', handleClick)
-
-//     }
-//   }, []);
-
-//   const node = document.querySelector('#modal_root');
-//   if (!node) return null;
-
-//   return ReactDOM.createPortal((
-//     <div className={styles.modal} ref={ref}>
-//       <h2 className={styles.title}>Реплицированные с зарубежных источников возможности</h2>
-//       <div className={styles.content}>
-//         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis id dolor aliquam laborum ipsa autem fuga illo! Vel, reprehenderit consectetur!</p>
-//         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis id dolor aliquam laborum ipsa autem fuga illo! Vel, reprehenderit consectetur!</p>
-//         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis id dolor aliquam laborum ipsa autem fuga illo! Vel, reprehenderit consectetur!</p>
-//       </div>
-//       <CommentForm/>
-//     </div>
-//   ), node);
-// }
-
-
 import React, { useEffect } from 'react';
 import ReactDOM  from 'react-dom';
 // @ts-ignore
 import ModalPostWrapper from './style.ts';
-import {CommentForm} from './CommentFormContainer/CommentForm/index.js';
+import { CommentForm } from './CommentFormContainer/CommentForm/index.js';
 import { Comments } from './Comments';
 import { CommentFormContainer } from './CommentFormContainer';
 
 interface IModalPostProps {
   onClose?: () => void;
+  userName: string; // Добавляем проп userName
+  id: string; // Добавляем проп Id
+  
 }
 
-export function Post({onClose}: IModalPostProps) {
+export function Post({ onClose, userName, id }: IModalPostProps) { // Принимаем проп userName и Id
   const ref = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -85,7 +44,7 @@ export function Post({onClose}: IModalPostProps) {
         </div>
       </div>
       <CommentFormContainer button={'Комментировать'} />
-      <Comments />
+      <Comments userName={userName} id={id} /> 
     </ModalPostWrapper>
   ), modal);
 }

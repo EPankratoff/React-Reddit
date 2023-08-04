@@ -2,7 +2,7 @@ import React from 'react';
 import { IPostsData } from '../../hooks/usePostsData';
 
 export const PostsContext =  React.createContext<IPostsData>({
-  id: '', // Проверьте, что здесь правильно устанавливается значение id
+  id: '', 
   title: '',
   preview: {
     images: ''

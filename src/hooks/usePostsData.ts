@@ -81,7 +81,7 @@ export function usePostsData() {
 
   React.useEffect(() => {
     axios.get('https://oauth.reddit.com/best.json?sr_detail=true', {
-      headers: { Authorization: `bearer ${token}` } // Замените YOUR_ACCESS_TOKEN_HERE на ваш access token
+      headers: { Authorization: `bearer ${token}` } 
     })
     .then(({ data }) => {
       const array = data.data.children;

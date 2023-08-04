@@ -5,9 +5,11 @@ import { Post } from '../../../Post';
 
 interface NewsTitleProps {
   title: string; // Проп для передачи заголовка новости
+  userName: string; // Проп для передачи имени пользователя
+  id: string; // Проп для передачи ID поста
 }
 
-export function NewsTitle({ title }: NewsTitleProps) {
+export function NewsTitle({ title, userName, id }: NewsTitleProps) {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   return (
@@ -17,7 +19,7 @@ export function NewsTitle({ title }: NewsTitleProps) {
       </a>
 
       {isModalOpened && (
-        <Post onClose={() => {setIsModalOpened(false)}} />
+        <Post onClose={() => {setIsModalOpened(false)}} userName={userName} id={id} /> 
       )}
     </h2>
   );

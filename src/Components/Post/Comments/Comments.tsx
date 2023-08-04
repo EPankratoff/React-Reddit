@@ -1,16 +1,19 @@
 import React from 'react';
 import { CommentsWrapper, CommentsButton, CommentsFooter, CommentsText, CommentsHeader } from './style';
-import { IComment, useGetComments } from '../../../hooks/useGetComments'; // Используем интерфейс IGetComments и хук useGetComments
+import { IComment, useGetComments } from '../../../hooks/useGetComments';
 import { nanoid } from 'nanoid';
 import { declensionNumerals } from '../../../utils/declensionNumerals';
 import { Icon, EIcons } from '../../Icon';
 import { CommentFormContainer } from '../CommentFormContainer';
-import { PostsContext } from '../../context/PostsContext';
 
-export function Comments() {
-  const { id } = React.useContext(PostsContext);
+interface IComments {
+  id: string;
+  userName: string;
+}
 
-  const [comments] = useGetComments(id); // Используем хук useGetComments для получения комментариев
+export function Comments({ id, userName }: IComments) {
+  const comments: IComment[] = useGetComments(id, userName);
+  console.log(id);
 
   const [isCommentFormReplayOpen, setCommentFormReplayOpen] = React.useState(false);
 
@@ -24,7 +27,7 @@ export function Comments() {
   return (
     <>
       {
-        comments && comments.map((comment: IComment)  => {
+        comments && comments.map((comment: IComment) => {
           const { author, text, time } = comment;
 
           const commentDate = new Date(time);
