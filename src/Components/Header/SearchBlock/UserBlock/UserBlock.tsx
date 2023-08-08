@@ -19,7 +19,7 @@ export function UserBlock({avatarSrc, userName}: IUserBlockProps) {
           }
         </picture>
         <p>
-          {userName ? `${userName}` : 'Аноним'}
+          {userName ? `${userName}` : 'Имя пользователя'}
         </p>
       </a>
     </UserBLockWrapper>

@@ -1,59 +1,45 @@
 import React from 'react';
 import axios from 'axios';
-import { IPostsData } from '../hooks/usePostsData';
-import { tokenContext } from '../Components/context/tokenContext';
+import { useSelector } from 'react-redux';
+import { IState } from '../store/store';
 
-export interface IComment {
+export interface IGetComments {
   author: string;
   text: string;
   time: number;
 }
 
-export function useGetComments(subreddit: string, id: string, userName?: string) {
-  const [comments, setComments] = React.useState<IComment[]>([]);
-  const token = React.useContext(tokenContext);
+export function useGetComments(id: string) {
+  const token = useSelector<IState, string>(state => state.token);
+  const [comments, setComments] = React.useState<IGetComments[]>([]);
 
   React.useEffect(() => {
+    if (!token || token === "undefined") return;
+
+    const postId = id;
     const sort = "old";
     const threaded = false;
 
-    axios.get(`https://oauth.reddit.com/r/${subreddit}/comments/${id}`, {
-      // headers: { Authorization: `bearer ${token}` },
-      maxRedirects: 0 // Отключаем автоматическое следование за перенаправлениями
+    axios.get(`https://oauth.reddit.com/comments/${postId}?sort=${sort}&threded=${threaded}`, {
+      headers: {Authorization: `bearer ${token}`}
+    }).then((res) => {
+      const children = res.data[1].data.children;
+
+      if (children) {
+        const data = children.map((comment: {data: any}) => {
+          let {author, body, created_utc} = comment.data;
+
+          return {
+            author, text: body, time: created_utc
+          }
+        });
+        
+        setComments(data.filter((el: { author: string }) => el.author !== undefined))
+      }
+    }).catch((err) => {
+      console.log(err)
     })
-      .then((res) => {
-        // Проверяем статус ответа на перенаправление (302)
-        if (res.status === 302 && res.headers?.location) {
-          // Выполняем запрос по новому URL
-          return axios.get(res.headers.location, {
-            headers: { Authorization: `bearer ${token}` }
-          });
-        }
+  }, [token])
 
-        return res; // Возвращаем исходный ответ, если нет перенаправления
-      })
-      .then((res) => {
-        // Проверяем, существует ли свойство 'data' и содержит ли оно 'children'
-        if (res?.data?.data?.children) {
-          const data = res.data.data.children.map((comment: any) => {
-            const { author, body, created_utc } = comment.data;
-            return {
-              author,
-              text: body,
-              time: created_utc,
-            };
-          });
-
-          setComments(data);
-        } else {
-          // Обрабатываем случай, когда свойство 'data' или 'children' отсутствует
-          console.log('Invalid API response:', res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [subreddit, id, token]);
-
-  return comments;
+  return [comments]
 }

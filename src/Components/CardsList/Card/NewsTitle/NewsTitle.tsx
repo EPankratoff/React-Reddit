@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { PostsContext } from '../../../context/PostsContext';
 // @ts-ignore
-import styles from './style.css';
-import { Post } from '../../../Post';
+import NewsTitleWrapper from './style.ts';
+import { ModalPost } from '../../../ModalPost';
 
-interface NewsTitleProps {
-  title: string; // Проп для передачи заголовка новости
-  userName: string; // Проп для передачи имени пользователя
-  id: string; // Проп для передачи ID поста
-}
-
-export function NewsTitle({ title, userName, id }: NewsTitleProps) {
-  const [isModalOpened, setIsModalOpened] = useState(false);
+export function NewsTitle() {
+  const {title} = React.useContext(PostsContext);
+  const [isModalOpened, setIsModalOpened] = React.useState(false);
 
   return (
-    <h2 className={styles.title}>
-      <a href="#post-url" className={styles.postLink} onClick={() => {setIsModalOpened(true)}}>
-        {title}
-      </a>
-
+    <NewsTitleWrapper onClick={() => setIsModalOpened(true)}>
+      {title}
       {isModalOpened && (
-        <Post onClose={() => {setIsModalOpened(false)}} userName={userName} id={id} /> 
+        <ModalPost onClose={() => setIsModalOpened(false)} />
       )}
-    </h2>
+    </NewsTitleWrapper>
   );
 }

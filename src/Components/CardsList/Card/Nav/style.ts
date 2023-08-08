@@ -8,7 +8,7 @@ const NavWrapper = styled.div`
   padding: 10px 20px;
 
   @media all and (min-width: 1024px) {
-    
+    justify-content: center;
   }
 `
 

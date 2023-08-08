@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // @ts-ignore
 import HeaderWrapper from './style.ts';
 import { SearchBlock } from './SearchBlock';

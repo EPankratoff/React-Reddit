@@ -15,7 +15,7 @@ const Card = styled.li`
     "--nav --nav"; 
 
   @media all and (min-width: 1024px) {
-    grid-template-columns: 228px 1fr 31px 54px; 
+    grid-template-columns: 228px 1fr 31px 79px; 
     grid-template-rows: auto; 
     grid-template-areas: 
       "--image --title --tooltip --nav"

@@ -2,7 +2,7 @@ import React from 'react';
 import { IPostsData } from '../../hooks/usePostsData';
 
 export const PostsContext =  React.createContext<IPostsData>({
-  id: '', 
+  id: '',
   title: '',
   preview: {
     images: ''
@@ -13,4 +13,4 @@ export const PostsContext =  React.createContext<IPostsData>({
     icon_img: ''
   },
   created_utc: 0,
-});
+})

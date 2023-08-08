@@ -2,18 +2,15 @@ import React, { useEffect } from 'react';
 import ReactDOM  from 'react-dom';
 // @ts-ignore
 import ModalPostWrapper from './style.ts';
-import { CommentForm } from './CommentFormContainer/CommentForm/index.js';
+import {CommentForm} from './CommentFormContainer/CommentForm/index.js';
 import { Comments } from './Comments';
 import { CommentFormContainer } from './CommentFormContainer';
 
 interface IModalPostProps {
   onClose?: () => void;
-  userName: string; // Добавляем проп userName
-  id: string; // Добавляем проп Id
-  
 }
 
-export function Post({ onClose, userName, id }: IModalPostProps) { // Принимаем проп userName и Id
+export function ModalPost({onClose}: IModalPostProps) {
   const ref = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,7 +41,7 @@ export function Post({ onClose, userName, id }: IModalPostProps) { // Прини
         </div>
       </div>
       <CommentFormContainer button={'Комментировать'} />
-      <Comments userName={userName} id={id} /> 
+      <Comments />
     </ModalPostWrapper>
   ), modal);
 }

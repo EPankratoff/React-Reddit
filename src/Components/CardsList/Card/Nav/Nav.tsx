@@ -6,20 +6,9 @@ import {Comments} from './Comments';
 import {Buttons} from './Buttons';
 import { PostsContext } from '../../../context/PostsContext';
 
-// Nav.tsx
+export function Nav() {
+  const {ups} = React.useContext(PostsContext);
 
-interface TSr_Details {
-  icon_img: string;
-}
-
-interface NavProps {
-  author: string;
-  ups: number;
-  srDetail: TSr_Details;
-  createdUtc: number;
-}
-
-export function Nav({ author, ups, srDetail, createdUtc }: NavProps) {
   return (
     <NavWrapper>
       <Raiting ups={ups} />
@@ -28,5 +17,3 @@ export function Nav({ author, ups, srDetail, createdUtc }: NavProps) {
     </NavWrapper>
   );
 }
-
-

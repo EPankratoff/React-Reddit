@@ -9,6 +9,13 @@ const UserBLockWrapper = styled.div`
       border-radius: 50%;
       flex-shrink: 0;
     }
+
+    img {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
   }
 
   a:hover {
@@ -31,6 +38,11 @@ const UserBLockWrapper = styled.div`
       align-items: center;
       justify-content: flex-start;
       gap: 0 13px;
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
     }
 
     svg {
