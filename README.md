@@ -1,5 +1,6 @@
-# React-Reddit
+# Reddit mirror
 
+React SPA that shows Reddit's best posts as well as detailed post pages with list of comments.
 
 ### Stack:  
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
