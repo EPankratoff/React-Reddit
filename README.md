@@ -16,5 +16,4 @@ React SPA that shows Reddit's best posts as well as detailed post pages with lis
 - Utilized authentication with OAuth
 - Implemented routing
 - Used Axios client for Reddit Api requests
-- Implemented an endless feed of posts. Loading of new posts is interrupted on every third scroll
 - Used Controlled Components
