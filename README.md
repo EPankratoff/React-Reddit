@@ -11,3 +11,10 @@ React SPA that shows Reddit's best posts as well as detailed post pages with lis
 ![Axios](https://img.shields.io/badge/-Axios-090909?style=for-the-badge&logo=axios)
 ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
 ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+### Overview:
+- Used Express.js for SSR
+- Utilized authentication with OAuth
+- Implemented routing
+- Used Axios client for Reddit Api requests
+- Implemented an endless feed of posts. Loading of new posts is interrupted on every third scroll
+- Used Controlled Components
